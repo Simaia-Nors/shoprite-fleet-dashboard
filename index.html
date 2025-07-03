@@ -398,7 +398,6 @@
             <button class="nav-btn active" onclick="showSection('overview')">Overview</button>
             <button class="nav-btn" onclick="showSection('vehicles')">Top 20 Vehicles</button>
             <button class="nav-btn" onclick="showSection('problems')">Problem Types</button>
-            <button class="nav-btn" onclick="showSection('highimpact')">High-Impact Problems</button>
             <button class="nav-btn" onclick="showSection('temporal')">Temporal Analysis</button>
             <button class="nav-btn" onclick="showSection('models')">Model Analysis</button>
             <button class="nav-btn" onclick="showSection('critical')">Critical Vehicles</button>
@@ -602,196 +601,7 @@
             </div>
         </div>
 
-        <!-- High-Impact Problems Section -->
-        <div id="highimpact" class="section">
-            <div class="text-content">
-                <h2>High-Impact Problems Analysis</h2>
-                <div class="highlight-box">
-                    <strong>Critical Insight:</strong> While routine maintenance (basic/complete maintenance) dominates by frequency, mechanical failures create disproportionate operational impact through extended immobilization periods.
-                </div>
-            </div>
-
-            <div class="chart-grid">
-                <div class="chart-container">
-                    <div class="chart-title">Impact vs Frequency Matrix</div>
-                    <div class="chart-wrapper">
-                        <canvas id="impactMatrixChart"></canvas>
-                    </div>
-                </div>
-
-                <div class="chart-container">
-                    <div class="chart-title">Cost of Downtime by Problem Type</div>
-                    <div class="chart-wrapper">
-                        <canvas id="downtimeCostChart"></canvas>
-                    </div>
-                </div>
-            </div>
-
-            <div class="data-table">
-                <div class="chart-title">High-Impact Problems Ranking (Business Days)</div>
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th>Rank</th>
-                            <th>Problem Type</th>
-                            <th>Total Business Days</th>
-                            <th>Occurrences</th>
-                            <th>Avg Days/Occurrence</th>
-                            <th>Impact Category</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td><span class="rank">1º</span></td>
-                            <td><strong>Basic maintenance</strong></td>
-                            <td>322</td>
-                            <td>111</td>
-                            <td class="normal">2.9</td>
-                            <td class="normal">High Volume, Low Individual Impact</td>
-                        </tr>
-                        <tr>
-                            <td><span class="rank">2º</span></td>
-                            <td><strong>Complete maintenance</strong></td>
-                            <td>110</td>
-                            <td>36</td>
-                            <td class="normal">3.1</td>
-                            <td class="normal">Planned, Predictable</td>
-                        </tr>
-                        <tr>
-                            <td><span class="rank">3º</span></td>
-                            <td><strong>Engine failure/malfunction</strong></td>
-                            <td class="critical">66</td>
-                            <td class="warning">4</td>
-                            <td class="critical">16.5</td>
-                            <td class="critical">CRITICAL - Unpredictable</td>
-                        </tr>
-                        <tr>
-                            <td><span class="rank">4º</span></td>
-                            <td><strong>Clutch failure</strong></td>
-                            <td class="critical">58</td>
-                            <td class="warning">3</td>
-                            <td class="critical">19.3</td>
-                            <td class="critical">CRITICAL - Catastrophic</td>
-                        </tr>
-                        <tr>
-                            <td><span class="rank">5º</span></td>
-                            <td><strong>Gearbox reconditioning</strong></td>
-                            <td class="critical">30</td>
-                            <td class="warning">1</td>
-                            <td class="critical">30.0</td>
-                            <td class="critical">CRITICAL - Single Event</td>
-                        </tr>
-                        <tr>
-                            <td><span class="rank">6º</span></td>
-                            <td><strong>Load box floor repair</strong></td>
-                            <td class="warning">29</td>
-                            <td class="warning">1</td>
-                            <td class="critical">29.0</td>
-                            <td class="warning">HIGH - Structural</td>
-                        </tr>
-                        <tr>
-                            <td><span class="rank">7º</span></td>
-                            <td><strong>Overheating</strong></td>
-                            <td class="warning">28</td>
-                            <td class="warning">2</td>
-                            <td class="warning">14.0</td>
-                            <td class="warning">HIGH - Preventable</td>
-                        </tr>
-                        <tr>
-                            <td><span class="rank">8º</span></td>
-                            <td><strong>Diagnosis</strong></td>
-                            <td class="normal">28</td>
-                            <td class="normal">7</td>
-                            <td class="normal">4.0</td>
-                            <td class="normal">Operational - Efficient</td>
-                        </tr>
-                        <tr>
-                            <td><span class="rank">9º</span></td>
-                            <td><strong>Solenoid valve replacement</strong></td>
-                            <td class="warning">27</td>
-                            <td class="warning">1</td>
-                            <td class="critical">27.0</td>
-                            <td class="warning">HIGH - Component Failure</td>
-                        </tr>
-                        <tr>
-                            <td><span class="rank">10º</span></td>
-                            <td><strong>Alternator replacement</strong></td>
-                            <td class="normal">26</td>
-                            <td class="normal">2</td>
-                            <td class="warning">13.0</td>
-                            <td class="normal">Medium - Electrical</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-
-            <div class="model-analysis">
-                <div class="model-card">
-                    <h3>🔴 Critical Problems (15+ days avg)</h3>
-                    <ul>
-                        <li><strong>Gearbox reconditioning:</strong> 30 days - Major overhaul</li>
-                        <li><strong>Load box floor repair:</strong> 29 days - Structural work</li>
-                        <li><strong>Solenoid valve replacement:</strong> 27 days - Complex hydraulics</li>
-                        <li><strong>Clutch failure:</strong> 19.3 days avg - Transmission critical</li>
-                        <li><strong>Engine failure:</strong> 16.5 days avg - Powertrain critical</li>
-                    </ul>
-                    <p><strong>Prevention Strategy:</strong> Predictive maintenance, component monitoring, early warning systems</p>
-                </div>
-
-                <div class="model-card">
-                    <h3>🟡 High-Impact Problems (8-15 days avg)</h3>
-                    <ul>
-                        <li><strong>Overheating:</strong> 14 days avg - Cooling system</li>
-                        <li><strong>Alternator replacement:</strong> 13 days avg - Electrical</li>
-                    </ul>
-                    <p><strong>Mitigation:</strong> Regular cooling system checks, electrical system diagnostics, spare parts availability</p>
-                </div>
-
-                <div class="model-card">
-                    <h3>🟢 Efficient Operations (<8 days avg)</h3>
-                    <ul>
-                        <li><strong>Diagnosis:</strong> 4 days avg - Quick identification</li>
-                        <li><strong>Complete maintenance:</strong> 3.1 days avg - Planned</li>
-                        <li><strong>Basic maintenance:</strong> 2.9 days avg - Routine</li>
-                    </ul>
-                    <p><strong>Best Practice:</strong> Current diagnostic and maintenance processes are optimized and should be maintained</p>
-                </div>
-
-                <div class="model-card">
-                    <h3>📊 Strategic Recommendations</h3>
-                    <ul>
-                        <li><strong>Immediate:</strong> Create emergency stock for critical components (clutch, engine parts)</li>
-                        <li><strong>Short-term:</strong> Implement predictive monitoring for high-mileage vehicles (>600k km)</li>
-                        <li><strong>Medium-term:</strong> Develop rapid response team for critical failures</li>
-                        <li><strong>Long-term:</strong> Consider lifecycle replacement strategy for vehicles with recurring critical issues</li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="text-content">
-                <h3>Business Impact Analysis</h3>
-                <div class="highlight-box">
-                    <h4>The "1% Rule" Discovery</h4>
-                    <p><strong>Critical insight:</strong> Just 1% of problem types (major mechanical failures) account for 25% of total business days lost. A single clutch failure (19.3 days) equals the impact of 6.5 complete maintenance cycles.</p>
-                </div>
-
-                <h3>Cost-Benefit Analysis</h3>
-                <ul>
-                    <li><strong>Prevention Investment ROI:</strong> Investing in predictive maintenance could prevent 80% of critical failures</li>
-                    <li><strong>Emergency Stock Value:</strong> Having critical components in stock could reduce failure downtime by 40-60%</li>
-                    <li><strong>Training Impact:</strong> Specialized technician training for critical systems could improve repair efficiency by 30%</li>
-                    <li><strong>Vehicle Lifecycle:</strong> Vehicles with >600k km show 3x higher probability of critical failures</li>
-                </ul>
-
-                <h3>Early Warning Indicators</h3>
-                <ul>
-                    <li>🔍 <strong>Increased diagnostic frequency</strong> - Often precedes major failures</li>
-                    <li>⚡ <strong>Electrical system issues</strong> - Can indicate broader powertrain problems</li>
-                    <li>🌡️ <strong>Recurring overheating</strong> - Early sign of engine/cooling system degradation</li>
-                    <li>📊 <strong>Maintenance interval compression</strong> - Vehicles requiring more frequent service</li>
-                </ul>
-            </div>
-        </div>
+        <!-- Temporal Section -->
         <div id="temporal" class="section">
             <div class="chart-grid">
                 <div class="chart-container">
@@ -1141,7 +951,7 @@
             {plate: 'KEI0892', model: 'FMX 440', visits: 7, days: 28, avgDays: 4.0, lastVisit: 'Jun 2025', odometer: 561585}
         ];
 
-        // Odometer Chart (Enhanced Horizontal Bar)
+        // Odometer Chart (Horizontal Bar)
         const odometerChart = new Chart(document.getElementById('odometerChart'), {
             type: 'bar',
             data: {
@@ -1150,14 +960,13 @@
                     label: 'Odometer (km)',
                     data: topVehiclesData.slice(0, 15).map(v => v.odometer),
                     backgroundColor: topVehiclesData.slice(0, 15).map((v, i) => {
-                        if (v.odometer > 600000) return '#e74c3c'; // Very high mileage
-                        if (v.odometer > 500000) return '#f39c12'; // High mileage
+                        if (v.odometer > 600000) return '#e74c3c'; // High mileage
+                        if (v.odometer > 500000) return '#f39c12'; // Medium-high mileage
                         if (v.odometer > 400000) return '#3498db'; // Medium mileage
                         return '#27ae60'; // Lower mileage
                     }),
                     borderRadius: 6,
                     borderSkipped: false,
-                    maxBarThickness: 30
                 }]
             },
             options: {
@@ -1165,7 +974,70 @@
                 maintainAspectRatio: false,
                 indexAxis: 'y',
                 animation: {
-                    duration: 1800,
+                    duration: 1500,
+                    easing: 'easeInOutQuart',
+                    delay: (context) => context.dataIndex * 80
+                },
+                plugins: {
+                    legend: {
+                        display: false
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                return context.parsed.x.toLocaleString() + ' km';
+                            },
+                            afterLabel: function(context) {
+                                const vehicle = topVehiclesData[context.dataIndex];
+                                return [`Model: ${vehicle.model}`, `Total days: ${vehicle.days}`, `Visits: ${vehicle.visits}`];
+                            }
+                        }
+                    }
+                },
+                scales: {
+                    x: {
+                        beginAtZero: true,
+                        title: {
+                            display: true,
+                            text: 'Odometer Reading (km)'
+                        },
+                        ticks: {
+                            callback: function(value) {
+                                return value.toLocaleString();
+                            }
+                        }
+                    },
+                    y: {
+                        title: {
+                            display: true,
+                            text: 'Vehicle License Plate'
+                        }
+                    }
+                }
+            }
+        });
+        // Top Vehicles Chart
+        const topVehiclesChart = new Chart(document.getElementById('topVehiclesChart'), {
+            type: 'bar',
+            data: {
+                labels: topVehiclesData.slice(0, 10).map(v => v.plate),
+                datasets: [{
+                    label: 'Days Immobilized',
+                    data: topVehiclesData.slice(0, 10).map(v => v.days),
+                    backgroundColor: [
+                        '#e74c3c', '#e74c3c', '#e74c3c',
+                        '#f39c12', '#f39c12', '#f39c12',
+                        '#3498db', '#3498db', '#3498db', '#3498db'
+                    ],
+                    borderRadius: 8,
+                    borderSkipped: false,
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                animation: {
+                    duration: 1500,
                     easing: 'easeInOutQuart',
                     delay: (context) => context.dataIndex * 100
                 },
@@ -1174,141 +1046,10 @@
                         display: false
                     },
                     tooltip: {
-                        backgroundColor: 'rgba(44, 62, 80, 0.9)',
-                        titleColor: '#fff',
-                        bodyColor: '#fff',
-                        borderColor: '#2c3e50',
-                        borderWidth: 2,
-                        cornerRadius: 8,
                         callbacks: {
-                            title: function(context) {
-                                return `Vehicle: ${context[0].label}`;
-                            },
-                            label: function(context) {
-                                return `Odometer: ${context.parsed.x.toLocaleString()} km`;
-                            },
                             afterLabel: function(context) {
                                 const vehicle = topVehiclesData[context.dataIndex];
-                                const kmPerDay = vehicle.odometer > 0 && vehicle.days > 0 ? 
-                                    (vehicle.odometer / vehicle.days).toFixed(0) : 0;
-                                const ageCategory = vehicle.odometer > 600000 ? 'Very High Mileage' :
-                                                  vehicle.odometer > 500000 ? 'High Mileage' :
-                                                  vehicle.odometer > 400000 ? 'Medium Mileage' : 'Lower Mileage';
-                                return [
-                                    `Model: ${vehicle.model}`,
-                                    `Total immobilization: ${vehicle.days} days`,
-                                    `Visits: ${vehicle.visits}`,
-                                    `Category: ${ageCategory}`,
-                                    `Usage intensity: ${kmPerDay} km/day ratio`
-                                ];
-                            }
-                        }
-                    }
-                },
-                scales: {
-                    x: {
-                        beginAtZero: true,
-                        max: 750000,
-                        title: {
-                            display: true,
-                            text: 'Odometer Reading (km)',
-                            font: {
-                                size: 14,
-                                weight: '600'
-                            }
-                        },
-                        ticks: {
-                            stepSize: 100000,
-                            font: {
-                                size: 11,
-                                weight: '500'
-                            },
-                            callback: function(value) {
-                                return (value / 1000) + 'k';
-                            }
-                        },
-                        grid: {
-                            color: 'rgba(44, 62, 80, 0.1)',
-                            lineWidth: 1
-                        }
-                    },
-                    y: {
-                        title: {
-                            display: true,
-                            text: 'Vehicle License Plate',
-                            font: {
-                                size: 14,
-                                weight: '600'
-                            }
-                        },
-                        grid: {
-                            display: false
-                        },
-                        ticks: {
-                            font: {
-                                size: 10,
-                                weight: '500'
-                            }
-                        }
-                    }
-                }
-            }
-        });
-        // Top Vehicles Chart (Enhanced)
-        const topVehiclesChart = new Chart(document.getElementById('topVehiclesChart'), {
-            type: 'bar',
-            data: {
-                labels: topVehiclesData.slice(0, 10).map(v => v.plate),
-                datasets: [{
-                    label: 'Days Immobilized',
-                    data: topVehiclesData.slice(0, 10).map(v => v.days),
-                    backgroundColor: topVehiclesData.slice(0, 10).map((v, i) => {
-                        if (v.days >= 80) return '#e74c3c'; // Critical: 80+ days
-                        if (v.days >= 60) return '#f39c12'; // High: 60-79 days  
-                        if (v.days >= 45) return '#3498db'; // Medium: 45-59 days
-                        return '#27ae60'; // Lower: <45 days
-                    }),
-                    borderRadius: 8,
-                    borderSkipped: false,
-                    maxBarThickness: 50
-                }]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                animation: {
-                    duration: 1800,
-                    easing: 'easeInOutQuart',
-                    delay: (context) => context.dataIndex * 120
-                },
-                plugins: {
-                    legend: {
-                        display: false
-                    },
-                    tooltip: {
-                        backgroundColor: 'rgba(44, 62, 80, 0.9)',
-                        titleColor: '#fff',
-                        bodyColor: '#fff',
-                        borderColor: '#2c3e50',
-                        borderWidth: 2,
-                        cornerRadius: 8,
-                        callbacks: {
-                            title: function(context) {
-                                return `Vehicle: ${context[0].label}`;
-                            },
-                            label: function(context) {
-                                return `Immobilized: ${context.parsed.y} days`;
-                            },
-                            afterLabel: function(context) {
-                                const vehicle = topVehiclesData[context.dataIndex];
-                                const efficiency = (vehicle.visits / vehicle.days * 30).toFixed(1); // visits per month equivalent
-                                return [
-                                    `Model: ${vehicle.model}`,
-                                    `Total visits: ${vehicle.visits}`,
-                                    `Average per visit: ${vehicle.avgDays} days`,
-                                    `Odometer: ${vehicle.odometer.toLocaleString()} km`,
-                                    `Efficiency: ${efficiency} visits/month`
-                                ];
+                                return [`Model: ${vehicle.model}`, `Visits: ${vehicle.visits}`, `Average: ${vehicle.avgDays} days`, `Odometer: ${vehicle.odometer.toLocaleString()} km`];
                             }
                         }
                     }
@@ -1316,45 +1057,15 @@
                 scales: {
                     y: {
                         beginAtZero: true,
-                        max: 90,
                         title: {
                             display: true,
-                            text: 'Days of Immobilization',
-                            font: {
-                                size: 14,
-                                weight: '600'
-                            }
-                        },
-                        ticks: {
-                            stepSize: 10,
-                            font: {
-                                size: 11,
-                                weight: '500'
-                            }
-                        },
-                        grid: {
-                            color: 'rgba(44, 62, 80, 0.1)',
-                            lineWidth: 1
+                            text: 'Days of Immobilization'
                         }
                     },
                     x: {
                         title: {
                             display: true,
-                            text: 'Vehicle License Plate',
-                            font: {
-                                size: 14,
-                                weight: '600'
-                            }
-                        },
-                        grid: {
-                            display: false
-                        },
-                        ticks: {
-                            font: {
-                                size: 11,
-                                weight: '500'
-                            },
-                            maxRotation: 45
+                            text: 'Vehicle License Plate'
                         }
                     }
                 }
@@ -1893,214 +1604,7 @@
             });
         }
 
-        // High-Impact Problems Charts
-        
-        // Impact vs Frequency Matrix (Bubble Chart)
-        const impactMatrixChart = new Chart(document.getElementById('impactMatrixChart'), {
-            type: 'scatter',
-            data: {
-                datasets: [{
-                    label: 'Critical Problems',
-                    data: [
-                        {x: 4, y: 16.5, r: 15}, // Engine failure
-                        {x: 3, y: 19.3, r: 12}, // Clutch failure
-                        {x: 1, y: 30.0, r: 8},  // Gearbox reconditioning
-                        {x: 1, y: 29.0, r: 8},  // Load box floor
-                        {x: 1, y: 27.0, r: 8}   // Solenoid valve
-                    ],
-                    backgroundColor: 'rgba(231, 76, 60, 0.7)',
-                    borderColor: '#e74c3c',
-                    borderWidth: 2
-                }, {
-                    label: 'High Volume',
-                    data: [
-                        {x: 111, y: 2.9, r: 25}, // Basic maintenance
-                        {x: 36, y: 3.1, r: 20},  // Complete maintenance
-                        {x: 7, y: 4.0, r: 10}    // Diagnosis
-                    ],
-                    backgroundColor: 'rgba(44, 62, 80, 0.7)',
-                    borderColor: '#2c3e50',
-                    borderWidth: 2
-                }, {
-                    label: 'Medium Impact',
-                    data: [
-                        {x: 2, y: 14.0, r: 10}, // Overheating
-                        {x: 2, y: 13.0, r: 10}  // Alternator
-                    ],
-                    backgroundColor: 'rgba(243, 156, 18, 0.7)',
-                    borderColor: '#f39c12',
-                    borderWidth: 2
-                }]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                animation: {
-                    duration: 2000,
-                    easing: 'easeInOutQuart'
-                },
-                plugins: {
-                    legend: {
-                        position: 'top',
-                        labels: {
-                            usePointStyle: true,
-                            font: {
-                                size: 12,
-                                weight: '600'
-                            }
-                        }
-                    },
-                    tooltip: {
-                        backgroundColor: 'rgba(44, 62, 80, 0.9)',
-                        titleColor: '#fff',
-                        bodyColor: '#fff',
-                        borderColor: '#2c3e50',
-                        borderWidth: 2,
-                        cornerRadius: 8,
-                        callbacks: {
-                            title: function(context) {
-                                const labels = [
-                                    'Engine failure', 'Clutch failure', 'Gearbox recon.', 'Load box repair', 'Solenoid valve',
-                                    'Basic maintenance', 'Complete maintenance', 'Diagnosis',
-                                    'Overheating', 'Alternator'
-                                ];
-                                return labels[context[0].dataIndex + (context[0].datasetIndex * 5)] || 'Problem Type';
-                            },
-                            label: function(context) {
-                                return `Frequency: ${context.parsed.x} occurrences`;
-                            },
-                            afterLabel: function(context) {
-                                return [`Avg Days: ${context.parsed.y}`, `Impact Size: ${(context.parsed.r * 2)}pts`];
-                            }
-                        }
-                    }
-                },
-                scales: {
-                    x: {
-                        type: 'logarithmic',
-                        title: {
-                            display: true,
-                            text: 'Frequency (Occurrences)',
-                            font: {
-                                size: 14,
-                                weight: '600'
-                            }
-                        },
-                        ticks: {
-                            callback: function(value) {
-                                return value;
-                            }
-                        }
-                    },
-                    y: {
-                        title: {
-                            display: true,
-                            text: 'Average Days per Occurrence',
-                            font: {
-                                size: 14,
-                                weight: '600'
-                            }
-                        },
-                        max: 35
-                    }
-                }
-            }
-        });
-
-        // Downtime Cost Chart
-        const downtimeCostChart = new Chart(document.getElementById('downtimeCostChart'), {
-            type: 'bar',
-            data: {
-                labels: ['Engine failure', 'Clutch failure', 'Gearbox recon.', 'Load box repair', 'Overheating', 'Solenoid valve'],
-                datasets: [{
-                    label: 'Total Business Days Lost',
-                    data: [66, 58, 30, 29, 28, 27],
-                    backgroundColor: [
-                        '#e74c3c', '#e74c3c', '#e74c3c', 
-                        '#f39c12', '#f39c12', '#f39c12'
-                    ],
-                    borderRadius: 8,
-                    borderSkipped: false,
-                    maxBarThickness: 60
-                }]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                animation: {
-                    duration: 1800,
-                    easing: 'easeInOutQuart',
-                    delay: (context) => context.dataIndex * 150
-                },
-                plugins: {
-                    legend: {
-                        display: false
-                    },
-                    tooltip: {
-                        backgroundColor: 'rgba(44, 62, 80, 0.9)',
-                        titleColor: '#fff',
-                        bodyColor: '#fff',
-                        borderColor: '#2c3e50',
-                        borderWidth: 2,
-                        cornerRadius: 8,
-                        callbacks: {
-                            afterLabel: function(context) {
-                                const avgDays = [16.5, 19.3, 30.0, 29.0, 14.0, 27.0];
-                                const occurrences = [4, 3, 1, 1, 2, 1];
-                                return [
-                                    `Avg per occurrence: ${avgDays[context.dataIndex]} days`,
-                                    `Total occurrences: ${occurrences[context.dataIndex]}`,
-                                    `Efficiency impact: ${(context.parsed.y / 2.9).toFixed(1)}x basic maintenance`
-                                ];
-                            }
-                        }
-                    }
-                },
-                scales: {
-                    y: {
-                        beginAtZero: true,
-                        title: {
-                            display: true,
-                            text: 'Total Business Days Lost',
-                            font: {
-                                size: 14,
-                                weight: '600'
-                            }
-                        },
-                        ticks: {
-                            font: {
-                                size: 11,
-                                weight: '500'
-                            }
-                        },
-                        grid: {
-                            color: 'rgba(44, 62, 80, 0.1)',
-                            lineWidth: 1
-                        }
-                    },
-                    x: {
-                        title: {
-                            display: true,
-                            text: 'Critical Problem Types',
-                            font: {
-                                size: 14,
-                                weight: '600'
-                            }
-                        },
-                        grid: {
-                            display: false
-                        },
-                        ticks: {
-                            font: {
-                                size: 10,
-                                weight: '500'
-                            },
-                            maxRotation: 45
-                        }
-                    }
-                }
-            }
-        });
+        // Initialize
         document.addEventListener('DOMContentLoaded', function() {
             populateVehiclesTable();
         });
