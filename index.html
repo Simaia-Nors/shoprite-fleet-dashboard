@@ -385,7 +385,7 @@
     <div class="header">
         <div class="header-content">
             <div class="nors-logo">
-                <img src="<img src="nors-logo.png" alt="NORS Logo">">
+                <img src="https://norsgroup.sharepoint.com/:i:/r/sites/norsINtranet/BrandSpace/01.%20Logo/01.%20Logo/04.%20PNG/NORS_Logotipo_SemFundo_Negativo_RGB.png?csf=1&web=1&e=feUscZ" alt="NORS Logo">
             </div>
             <h1>Complete Report - Shoprite Fleet Analysis</h1>
             <p>Period: February 2024 to June 2025 | 306 Interventions | 57 Vehicles</p>
@@ -682,7 +682,7 @@
         <!-- Models Section -->
         <div id="models" class="section">
             <div class="chart-container">
-                <div class="chart-title">Intervention Distribution by Model</div>
+                <div class="chart-title">Vehicle Distribution by Model</div>
                 <div class="chart-wrapper">
                     <canvas id="modelsChart"></canvas>
                 </div>
@@ -692,10 +692,10 @@
                 <div class="model-card">
                     <h3>FMX 440</h3>
                     <ul>
-                        <li><strong>Fleet quantity:</strong> 51 vehicles</li>
-                        <li><strong>Visited facilities:</strong> 51 (100%)</li>
+                        <li><strong>Fleet quantity:</strong> 43 vehicles</li>
+                        <li><strong>Visited facilities:</strong> 43 (100%)</li>
                         <li><strong>Total interventions:</strong> 237</li>
-                        <li><strong>Average visits:</strong> 4.6 per vehicle</li>
+                        <li><strong>Average visits:</strong> 5.5 per vehicle</li>
                         <li><strong>Most common problem:</strong> Overheating (4 occurrences)</li>
                         <li><strong>Average immobilization time:</strong> 4.8 days</li>
                         <li><strong>Preventive vs Corrective:</strong> 28% / 72%</li>
@@ -951,7 +951,7 @@
             {plate: 'KEI0892', model: 'FMX 440', visits: 7, days: 28, avgDays: 4.0, lastVisit: 'Jun 2025', odometer: 561585}
         ];
 
-        // Odometer Chart (Horizontal Bar)
+        // Odometer Chart (Enhanced Horizontal Bar)
         const odometerChart = new Chart(document.getElementById('odometerChart'), {
             type: 'bar',
             data: {
@@ -960,13 +960,14 @@
                     label: 'Odometer (km)',
                     data: topVehiclesData.slice(0, 15).map(v => v.odometer),
                     backgroundColor: topVehiclesData.slice(0, 15).map((v, i) => {
-                        if (v.odometer > 600000) return '#e74c3c'; // High mileage
-                        if (v.odometer > 500000) return '#f39c12'; // Medium-high mileage
+                        if (v.odometer > 600000) return '#e74c3c'; // Very high mileage
+                        if (v.odometer > 500000) return '#f39c12'; // High mileage
                         if (v.odometer > 400000) return '#3498db'; // Medium mileage
                         return '#27ae60'; // Lower mileage
                     }),
                     borderRadius: 6,
                     borderSkipped: false,
+                    maxBarThickness: 30
                 }]
             },
             options: {
@@ -974,70 +975,7 @@
                 maintainAspectRatio: false,
                 indexAxis: 'y',
                 animation: {
-                    duration: 1500,
-                    easing: 'easeInOutQuart',
-                    delay: (context) => context.dataIndex * 80
-                },
-                plugins: {
-                    legend: {
-                        display: false
-                    },
-                    tooltip: {
-                        callbacks: {
-                            label: function(context) {
-                                return context.parsed.x.toLocaleString() + ' km';
-                            },
-                            afterLabel: function(context) {
-                                const vehicle = topVehiclesData[context.dataIndex];
-                                return [`Model: ${vehicle.model}`, `Total days: ${vehicle.days}`, `Visits: ${vehicle.visits}`];
-                            }
-                        }
-                    }
-                },
-                scales: {
-                    x: {
-                        beginAtZero: true,
-                        title: {
-                            display: true,
-                            text: 'Odometer Reading (km)'
-                        },
-                        ticks: {
-                            callback: function(value) {
-                                return value.toLocaleString();
-                            }
-                        }
-                    },
-                    y: {
-                        title: {
-                            display: true,
-                            text: 'Vehicle License Plate'
-                        }
-                    }
-                }
-            }
-        });
-        // Top Vehicles Chart
-        const topVehiclesChart = new Chart(document.getElementById('topVehiclesChart'), {
-            type: 'bar',
-            data: {
-                labels: topVehiclesData.slice(0, 10).map(v => v.plate),
-                datasets: [{
-                    label: 'Days Immobilized',
-                    data: topVehiclesData.slice(0, 10).map(v => v.days),
-                    backgroundColor: [
-                        '#e74c3c', '#e74c3c', '#e74c3c',
-                        '#f39c12', '#f39c12', '#f39c12',
-                        '#3498db', '#3498db', '#3498db', '#3498db'
-                    ],
-                    borderRadius: 8,
-                    borderSkipped: false,
-                }]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                animation: {
-                    duration: 1500,
+                    duration: 1800,
                     easing: 'easeInOutQuart',
                     delay: (context) => context.dataIndex * 100
                 },
@@ -1046,10 +984,141 @@
                         display: false
                     },
                     tooltip: {
+                        backgroundColor: 'rgba(44, 62, 80, 0.9)',
+                        titleColor: '#fff',
+                        bodyColor: '#fff',
+                        borderColor: '#2c3e50',
+                        borderWidth: 2,
+                        cornerRadius: 8,
                         callbacks: {
+                            title: function(context) {
+                                return `Vehicle: ${context[0].label}`;
+                            },
+                            label: function(context) {
+                                return `Odometer: ${context.parsed.x.toLocaleString()} km`;
+                            },
                             afterLabel: function(context) {
                                 const vehicle = topVehiclesData[context.dataIndex];
-                                return [`Model: ${vehicle.model}`, `Visits: ${vehicle.visits}`, `Average: ${vehicle.avgDays} days`, `Odometer: ${vehicle.odometer.toLocaleString()} km`];
+                                const kmPerDay = vehicle.odometer > 0 && vehicle.days > 0 ? 
+                                    (vehicle.odometer / vehicle.days).toFixed(0) : 0;
+                                const ageCategory = vehicle.odometer > 600000 ? 'Very High Mileage' :
+                                                  vehicle.odometer > 500000 ? 'High Mileage' :
+                                                  vehicle.odometer > 400000 ? 'Medium Mileage' : 'Lower Mileage';
+                                return [
+                                    `Model: ${vehicle.model}`,
+                                    `Total immobilization: ${vehicle.days} days`,
+                                    `Visits: ${vehicle.visits}`,
+                                    `Category: ${ageCategory}`,
+                                    `Usage intensity: ${kmPerDay} km/day ratio`
+                                ];
+                            }
+                        }
+                    }
+                },
+                scales: {
+                    x: {
+                        beginAtZero: true,
+                        max: 750000,
+                        title: {
+                            display: true,
+                            text: 'Odometer Reading (km)',
+                            font: {
+                                size: 14,
+                                weight: '600'
+                            }
+                        },
+                        ticks: {
+                            stepSize: 100000,
+                            font: {
+                                size: 11,
+                                weight: '500'
+                            },
+                            callback: function(value) {
+                                return (value / 1000) + 'k';
+                            }
+                        },
+                        grid: {
+                            color: 'rgba(44, 62, 80, 0.1)',
+                            lineWidth: 1
+                        }
+                    },
+                    y: {
+                        title: {
+                            display: true,
+                            text: 'Vehicle License Plate',
+                            font: {
+                                size: 14,
+                                weight: '600'
+                            }
+                        },
+                        grid: {
+                            display: false
+                        },
+                        ticks: {
+                            font: {
+                                size: 10,
+                                weight: '500'
+                            }
+                        }
+                    }
+                }
+            }
+        });
+        // Top Vehicles Chart (Enhanced)
+        const topVehiclesChart = new Chart(document.getElementById('topVehiclesChart'), {
+            type: 'bar',
+            data: {
+                labels: topVehiclesData.slice(0, 10).map(v => v.plate),
+                datasets: [{
+                    label: 'Days Immobilized',
+                    data: topVehiclesData.slice(0, 10).map(v => v.days),
+                    backgroundColor: topVehiclesData.slice(0, 10).map((v, i) => {
+                        if (v.days >= 80) return '#e74c3c'; // Critical: 80+ days
+                        if (v.days >= 60) return '#f39c12'; // High: 60-79 days  
+                        if (v.days >= 45) return '#3498db'; // Medium: 45-59 days
+                        return '#27ae60'; // Lower: <45 days
+                    }),
+                    borderRadius: 8,
+                    borderSkipped: false,
+                    maxBarThickness: 50
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                animation: {
+                    duration: 1800,
+                    easing: 'easeInOutQuart',
+                    delay: (context) => context.dataIndex * 120
+                },
+                plugins: {
+                    legend: {
+                        display: false
+                    },
+                    tooltip: {
+                        backgroundColor: 'rgba(44, 62, 80, 0.9)',
+                        titleColor: '#fff',
+                        bodyColor: '#fff',
+                        borderColor: '#2c3e50',
+                        borderWidth: 2,
+                        cornerRadius: 8,
+                        callbacks: {
+                            title: function(context) {
+                                return `Vehicle: ${context[0].label}`;
+                            },
+                            label: function(context) {
+                                return `Immobilized: ${context.parsed.y} days`;
+                            },
+                            afterLabel: function(context) {
+                                const vehicle = topVehiclesData[context.dataIndex];
+                                const efficiency = (vehicle.visits / vehicle.days * 30).toFixed(1); // visits per month equivalent
+                                return [
+                                    `Model: ${vehicle.model}`,
+                                    `Total visits: ${vehicle.visits}`,
+                                    `Average per visit: ${vehicle.avgDays} days`,
+                                    `Odometer: ${vehicle.odometer.toLocaleString()} km`,
+                                    `Efficiency: ${efficiency} visits/month`
+                                ];
                             }
                         }
                     }
@@ -1057,15 +1126,45 @@
                 scales: {
                     y: {
                         beginAtZero: true,
+                        max: 90,
                         title: {
                             display: true,
-                            text: 'Days of Immobilization'
+                            text: 'Days of Immobilization',
+                            font: {
+                                size: 14,
+                                weight: '600'
+                            }
+                        },
+                        ticks: {
+                            stepSize: 10,
+                            font: {
+                                size: 11,
+                                weight: '500'
+                            }
+                        },
+                        grid: {
+                            color: 'rgba(44, 62, 80, 0.1)',
+                            lineWidth: 1
                         }
                     },
                     x: {
                         title: {
                             display: true,
-                            text: 'Vehicle License Plate'
+                            text: 'Vehicle License Plate',
+                            font: {
+                                size: 14,
+                                weight: '600'
+                            }
+                        },
+                        grid: {
+                            display: false
+                        },
+                        ticks: {
+                            font: {
+                                size: 11,
+                                weight: '500'
+                            },
+                            maxRotation: 45
                         }
                     }
                 }
@@ -1530,16 +1629,18 @@
             }
         });
 
-        // Models Chart (Updated with corrected data)
+        // Models Chart (Enhanced Animation)
         const modelsChart = new Chart(document.getElementById('modelsChart'), {
             type: 'doughnut',
             data: {
                 labels: ['FMX 440', 'FH 520', '420', 'FL 240'],
                 datasets: [{
-                    data: [237, 63, 3, 2],
+                    data: [43, 10, 2, 2], // Vehicle count: 43+10+2+2 = 57 vehicles
                     backgroundColor: ['#2c3e50', '#34495e', '#f39c12', '#e74c3c'],
-                    borderWidth: 0,
-                    cutout: '50%'
+                    borderWidth: 3,
+                    borderColor: '#fff',
+                    cutout: '55%',
+                    hoverOffset: 15
                 }]
             },
             options: {
@@ -1547,24 +1648,63 @@
                 maintainAspectRatio: false,
                 animation: {
                     animateRotate: true,
-                    duration: 1500,
-                    easing: 'easeInOutQuart'
+                    animateScale: true,
+                    duration: 2000,
+                    easing: 'easeInOutBack',
+                    delay: (context) => {
+                        let delay = 0;
+                        if (context.type === 'data' && context.mode === 'default') {
+                            delay = context.dataIndex * 300; // Staggered animation
+                        }
+                        return delay;
+                    }
                 },
                 plugins: {
                     legend: {
                         position: 'bottom',
                         labels: {
-                            padding: 20,
-                            usePointStyle: true
+                            padding: 25,
+                            usePointStyle: true,
+                            pointStyle: 'circle',
+                            font: {
+                                size: 13,
+                                weight: '600'
+                            }
                         }
                     },
                     tooltip: {
+                        backgroundColor: 'rgba(44, 62, 80, 0.9)',
+                        titleColor: '#fff',
+                        bodyColor: '#fff',
+                        borderColor: '#2c3e50',
+                        borderWidth: 2,
+                        cornerRadius: 8,
                         callbacks: {
+                            title: function(context) {
+                                return `Model: ${context[0].label}`;
+                            },
                             label: function(context) {
-                                return context.label + ': ' + context.parsed + ' interventions';
+                                const total = context.dataset.data.reduce((a, b) => a + b, 0);
+                                const percentage = ((context.parsed / total) * 100).toFixed(1);
+                                return `Vehicles: ${context.parsed} (${percentage}%)`;
+                            },
+                            afterLabel: function(context) {
+                                const interventionsData = [237, 63, 3, 2]; // Total interventions per model
+                                const avgVisits = (interventionsData[context.dataIndex] / context.parsed).toFixed(1);
+                                return [
+                                    `Total interventions: ${interventionsData[context.dataIndex]}`,
+                                    `Average visits per vehicle: ${avgVisits}`
+                                ];
                             }
                         }
                     }
+                },
+                interaction: {
+                    intersect: false,
+                    mode: 'point'
+                },
+                hover: {
+                    animationDuration: 300
                 }
             }
         });
