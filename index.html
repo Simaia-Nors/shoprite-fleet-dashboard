@@ -543,57 +543,99 @@
             </div>
 
             <div class="data-table">
-                <div class="chart-title">Problem Breakdown by Frequency</div>
+                <div class="chart-title">Complete Problem Breakdown by Technical Category</div>
                 <table class="table">
                     <thead>
                         <tr>
-                            <th>Problem Type</th>
-                            <th>Frequency</th>
-                            <th>Average Repair Time</th>
-                            <th>Impact</th>
+                            <th>Technical Category</th>
+                            <th>Interventions</th>
+                            <th>% of Total</th>
+                            <th>Priority Level</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <td>Engine failure/malfunction</td>
-                            <td class="critical">5</td>
-                            <td class="critical">17.4 days</td>
-                            <td class="critical">High</td>
+                            <td>Maintenance/Diagnostic</td>
+                            <td class="normal">167</td>
+                            <td class="normal">54.6%</td>
+                            <td class="normal">Routine</td>
                         </tr>
                         <tr>
-                            <td>Clutch failure</td>
-                            <td class="critical">5</td>
-                            <td class="critical">26.6 days</td>
-                            <td class="critical">High</td>
-                        </tr>
-                        <tr>
-                            <td>Overheating</td>
-                            <td class="warning">4</td>
-                            <td class="warning">14.2 days</td>
+                            <td>Electrical System</td>
+                            <td class="warning">36</td>
+                            <td class="warning">11.8%</td>
                             <td class="warning">Medium</td>
                         </tr>
                         <tr>
-                            <td>Radiator water leak</td>
-                            <td class="warning">4</td>
-                            <td class="normal">3.5 days</td>
+                            <td>Cooling System</td>
+                            <td class="warning">24</td>
+                            <td class="warning">7.8%</td>
+                            <td class="warning">Medium</td>
+                        </tr>
+                        <tr>
+                            <td>Brake System</td>
+                            <td class="warning">19</td>
+                            <td class="warning">6.2%</td>
+                            <td class="critical">High</td>
+                        </tr>
+                        <tr>
+                            <td>Pneumatic/Air System</td>
+                            <td class="normal">11</td>
+                            <td class="normal">3.6%</td>
+                            <td class="warning">Medium</td>
+                        </tr>
+                        <tr>
+                            <td>Clutch</td>
+                            <td class="normal">10</td>
+                            <td class="normal">3.3%</td>
+                            <td class="critical">High</td>
+                        </tr>
+                        <tr>
+                            <td>Engine</td>
+                            <td class="normal">8</td>
+                            <td class="normal">2.6%</td>
+                            <td class="critical">High</td>
+                        </tr>
+                        <tr>
+                            <td>Suspension</td>
+                            <td class="normal">8</td>
+                            <td class="normal">2.6%</td>
+                            <td class="warning">Medium</td>
+                        </tr>
+                        <tr>
+                            <td>Transmission</td>
+                            <td class="normal">8</td>
+                            <td class="normal">2.6%</td>
+                            <td class="critical">High</td>
+                        </tr>
+                        <tr>
+                            <td>Chassis/Body</td>
+                            <td class="normal">5</td>
+                            <td class="normal">1.6%</td>
                             <td class="normal">Low</td>
                         </tr>
                         <tr>
-                            <td>Check water leak</td>
+                            <td>Fuel System</td>
                             <td class="normal">3</td>
-                            <td class="warning">10.7 days</td>
+                            <td class="normal">1.0%</td>
                             <td class="warning">Medium</td>
                         </tr>
                         <tr>
-                            <td>Alternator replacement</td>
+                            <td>Exhaust/Turbo</td>
+                            <td class="normal">3</td>
+                            <td class="normal">1.0%</td>
+                            <td class="warning">Medium</td>
+                        </tr>
+                        <tr>
+                            <td>Refrigeration System</td>
                             <td class="normal">2</td>
-                            <td class="warning">16.0 days</td>
-                            <td class="warning">Medium</td>
+                            <td class="normal">0.7%</td>
+                            <td class="normal">Low</td>
                         </tr>
                         <tr>
-                            <td>Battery replacement</td>
-                            <td class="normal">18</td>
-                            <td class="normal">0.0 days</td>
+                            <td>Air Conditioning</td>
+                            <td class="normal">2</td>
+                            <td class="normal">0.7%</td>
                             <td class="normal">Low</td>
                         </tr>
                     </tbody>
@@ -1260,14 +1302,14 @@
             }
         });
 
-        // Intervention Types Chart (Updated with correct data)
+        // Intervention Types Chart (Updated with reclassified data)
         const interventionTypesChart = new Chart(document.getElementById('interventionTypesChart'), {
             type: 'pie',
             data: {
-                labels: ['Basic maintenance', 'Complete maintenance', 'Battery replacement', 'Diagnosis', 'Engine failure', 'Others'],
+                labels: ['Maintenance/Diagnostic', 'Electrical System', 'Cooling System', 'Brake System', 'Pneumatic System', 'Clutch', 'Engine', 'Others'],
                 datasets: [{
-                    data: [37.3, 11.8, 5.9, 2.3, 1.3, 41.5],
-                    backgroundColor: ['#2c3e50', '#3498db', '#f39c12', '#e74c3c', '#9b59b6', '#95a5a6'],
+                    data: [54.6, 11.8, 7.8, 6.2, 3.6, 3.3, 2.6, 10.1],
+                    backgroundColor: ['#2c3e50', '#3498db', '#1abc9c', '#f39c12', '#e67e22', '#e74c3c', '#9b59b6', '#95a5a6'],
                     borderWidth: 0
                 }]
             },
@@ -1283,13 +1325,27 @@
                         position: 'bottom',
                         labels: {
                             padding: 15,
-                            usePointStyle: true
+                            usePointStyle: true,
+                            font: {
+                                size: 12,
+                                weight: '500'
+                            }
                         }
                     },
                     tooltip: {
+                        backgroundColor: 'rgba(44, 62, 80, 0.9)',
+                        titleColor: '#fff',
+                        bodyColor: '#fff',
+                        borderColor: '#2c3e50',
+                        borderWidth: 2,
+                        cornerRadius: 8,
                         callbacks: {
                             label: function(context) {
-                                return context.label + ': ' + context.parsed + '%';
+                                return `${context.label}: ${context.parsed}%`;
+                            },
+                            afterLabel: function(context) {
+                                const interventionCounts = [167, 36, 24, 19, 11, 10, 8, 31]; // Approximate intervention counts
+                                return `Interventions: ~${interventionCounts[context.dataIndex]}`;
                             }
                         }
                     }
